@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        // 대각선 움직임 제한
+        // 대각선 움직임 제한 && 캐릭터 움직임 애니메이션 트리거
         if (Input.GetButtonDown("Vertical") || Input.GetButtonUp("Horizontal")) {
             isVertical = true;
             animator.SetTrigger("Change");
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Change");
         }
 
+        // 캐릭터 속도 지정 && 캐릭터 움직임 애니메이션 방향 지정
         if (isVertical) {
             velocity = new Vector2(0, Input.GetAxisRaw("Vertical") * speed);
             animator.SetInteger("vAxisRaw", (int)Input.GetAxisRaw("Vertical"));
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
             animator.SetInteger("hAxisRaw", (int)Input.GetAxisRaw("Horizontal"));
         }
 
+        // 캐릭터 움직이기
         rigid.velocity = velocity;
     }
 }
